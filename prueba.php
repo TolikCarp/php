@@ -10,6 +10,8 @@
 <body>
 
 <?php 
+
+
 	
 
 						/*$stock = 100;
@@ -46,8 +48,8 @@
 						 	   $aProductos[] = array(
 						 	 		'Nombre' => "TV 50 PULGADAS",
 						 	 		'Marca' => "Sony" ,
-						 	 		'Modelo' => "Surround" ,
-						 	 		'Stock' => 1,
+						 	 		'Modelo' => "S15" ,
+						 	 		'Stock' => 0,
 						 	 		'Precio' => 3000,
 
 						 	  );
@@ -80,21 +82,21 @@
 						
 								
 								
-
+					$var =0 ;
 					for ($i=0; $i < count($aProductos)  ; $i++) { 
 					echo"<tr><td>" . $aProductos[$i]["Nombre"] ."</td>" ;
 					echo"<td>" . $aProductos[$i]["Marca"]  ."</td>" ;
 					echo"<td>" . $aProductos[$i]["Modelo"] ."</td>" ;
-					echo"<td>" . $aProductos[$i]["Stock"] >10? "Hay stock":($aProductos[$i]["Stock"] <= 10 && 
-					$aProductos[$i]["Stock"] > 0 ? "Poco stock":"Sin stock" )  ."</td>";
+					echo"<td>" . $aProductos[$i]["Stock"] == 0? "Sin stock":($aProductos[$i]["Stock"] <= 10 && 
+					$aProductos[$i]["Stock"] > 0 ? "Poco stock":"Hay stock" ) ."</td>";
 					echo"<td>" . $aProductos[$i]["Precio"] ."</td></tr>";
-
+					
 
 
 							}
 
 
-							$var =0 ;
+							
 								
 							for ($i=0;  $i < count($aProductos); $i++) { 
 								
