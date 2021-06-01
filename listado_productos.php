@@ -36,7 +36,7 @@
 
 		"nombre" => "Aire acondicionado ",
 		"marca" => "Surrey",
-		"modelo" => "2900F Split 553AIQ12",
+		"modelo" => "29000F Split 553AIQ12",
 		"stock" => 0,
 		"precio" => 150000
 
@@ -70,19 +70,33 @@
 				<?php 
 
 	foreach ($aProductos as $item ) {
+
+if ($item["stock"]>0 && $item["stock"] <= 10 ) {
+			$item["stock"] = "Poco stock" ;
+		}
+
+elseif ($item["stock"]>10) {
+			$item["stock"] = " Hay stock" ;
+		}	
+
+else  $item["stock"] = "Sin stock";			
+
 		echo "<tr><td>"	. $item["nombre"] ."</td>
 		<td>"	. $item["marca"] ."</td>
 		<td>"	. $item["modelo"] ."</td>
-		<td>"	. $item["stock"] ."</td>
+		<td>"	. $item["stock"]  ."</td>
 		<td>"	. $item["precio"] ."</td>
 		<td>  <button>Comprar</button>   </td>
 
 		</tr>" ;
 		
+		
+		
+
+						} 
 
 
-						}
-
+		
 
 
 
