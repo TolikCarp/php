@@ -27,10 +27,10 @@
 
 		/*print_r($_REQUEST); /*para mi*/
 
-		$usuario = $_REQUEST["txtUsuario"];
+		$usuario = $_REQUEST["txtUsuario"]; /* variables */
 
-
-		$clave = $_REQUEST["txtClave"];
+ 
+		$clave = $_REQUEST["txtClave"]; /* variables */ 
 
 		if($usuario != null && $clave != null ){
 			header ("Location: acceso-confirmado.php"); 
@@ -55,7 +55,7 @@
 			<label for="txtClave">Contraseña</label>
 			<input type="password" name="txtClave" id="txtClave">
 			<br>
-			<input type="submit" value="Enviar" class="btn btn-primary">
+			<input type="submit" value="Enviar" class="btn btn-primary" style="width:50%; align-self: center;">
  
 
 		</form>
