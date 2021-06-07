@@ -11,42 +11,61 @@
 
 <?php
  
-	 
 
-	 		$a=0;
-	 		$b=0;
-	 		$c= 0;
-	 		$d=0;
-
- 			$iva = $_REQUEST["txtIva"];
-			$sinIva = $_REQUEST["txtPrecioSinIva"];
-			$conIva = $_REQUEST["txtPrecioConIva"];
+			$iva=0; 
+			$resPrecioSinIva=0;
+			$resPrecioConIva=0;
+			$diferenciaIva = 0;	
 
 			
+			
 
-		if(isset($_REQUEST['boton'])){
+		if($_POST){
+			
+			$iva = $_REQUEST["txtIva"]; 
+			
+			$precioSinIva = $_REQUEST["txtPrecioSinIva"];
+			$precioConIva = $_REQUEST["txtPrecioConIva"];
+	 		
+			// PRECIO SIN IVA
+			if ($iva > 0 && $precioSinIva > 0 && $precioConIva == "") {
+				
+				
+				$resPrecioConIva = $precioSinIva + ($precioSinIva * $iva)/100;
+				$resPrecioSinIva = $precioSinIva;
+				$diferenciaIva = $resPrecioConIva - $resPrecioSinIva; 
 
 
+			}
 
-			if ($iva != null && $sinIva > 0 ) {
-				   $a = $sinIva - ($sinIva*$iva)/100 ;
-				}
+			// PRECIO CON IVA 
+
+				if ($iva > 0 &&  $precioConIva > 0 && $precioSinIva == "") {
+				
+				
+				$resPrecioSinIva = $precioConIva - ($precioConIva * $iva)/100;
+				$resPrecioConIva = $precioConIva;
+				$diferenciaIva = $resPrecioConIva - $resPrecioSinIva; 
+								
+
+			}
 
 
+		     
 
-		     else if ($iva != null && $conIva > 0 ) {
-					$b =  $conIva + ($conIva*$iva)/100 ;
-				}
+				
  		
 
+			
+
 
 
 			
-		}
+		
 	
 
 	
- 
+ }
 
 
 		 ?>
@@ -73,7 +92,7 @@
 
 	<div  style="width: 50% ;  display:flex; justify-content: center;  padding-top:10em; "> 
 		
-		<form action="calcular_iva.php"  method="post" style="display: flex; flex-direction: column;">   
+		<form action=""  method="post" style="display: flex; flex-direction: column;">   
 
 		<label for="txtIva">IVA</label>
 		<input type="text" name="txtIva">
@@ -102,17 +121,19 @@
 	
 		<table class="table">
 			
-			<tr><td>IVA %:</td>  <td><?php echo $iva  ?> </td>   </tr>
-			<tr><td>Precio sin IVA:</td>  <td name="a"><?php echo $a ;?></td>  </tr>
-			<tr><td >Precio con IVA:</td>  <td name="b"><?php echo $b ;?></td>  </tr>
-			<tr><td>IVA cantidad:</td>  <td> <?php echo $c ?> </td>  echo   </tr>
+			<tr><td>IVA:</td>  <td><?php echo "% $iva "?> </td>   </tr>
+			<tr><td>Precio sin IVA:</td>  <td ><?php echo "$ $resPrecioSinIva" ?></td>  </tr>
+			<tr><td >Precio con IVA:</td>  <td ><?php echo"$ $resPrecioConIva" ?></td>  </tr>
+			<tr><td>IVA cantidad:</td>  <td> <?php echo "$ $diferenciaIva " ?> </td>    </tr>
 
 		</table>
 
 
 	</div>
+	
 
 </div>
+
 
 
 

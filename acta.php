@@ -18,7 +18,7 @@
 
 			"ID"=>1,
 			"NOMBRE"=> "Roberto Carlos",
-			"NOTA 1" => 2,
+			"NOTA 1" => 2.5,
 			"NOTA 2" => 7
 
 
@@ -31,7 +31,7 @@
 			"ID"=>2,
 			"NOMBRE"=> "Luis Chilavert",
 			"NOTA 1" => 10,
-			"NOTA 2" => 5
+			"NOTA 2" => 10
 
 
 		);
@@ -43,6 +43,17 @@
 			"NOMBRE"=> "Gato Gaudio",
 			"NOTA 1" => 8,
 			"NOTA 2" => 10
+
+
+		);
+
+
+			$aAlumnos[]=array(
+
+			"ID"=>4,
+			"NOMBRE"=> "Diedo Ballotelli",
+			"NOTA 1" => 10,
+			"NOTA 2" => 3.7
 
 
 		);
@@ -93,20 +104,8 @@
 
  							</tr>";
 
- 							 $general = 0;
 
- 							  for ($i=0; $i < count($promtot); $i++) {  
- 								$general =+ $promtot;  
- 								
- 							}
-
-
-
-
-
-
-
- 						}
+							}
  						 
 
 
@@ -127,17 +126,28 @@
  			</div>
  			<div>
  					<?php 
- 					$contador = 0;
- 					
+ 					$notaUno = 0;
+ 					$notaDos = 0;
+ 					$contador=0; 					
 
  					for ($i=0; $i < count($aAlumnos) ; $i++) { 
- 						 $contador++ ;  
+ 						$notaUno += $aAlumnos[$i]["NOTA 1"]  ; 
  					}  
 
- 					
+
+ 					for ($i=0; $i < count($aAlumnos) ; $i++) { 
+ 						$notaDos += $aAlumnos[$i]["NOTA 2"]  ; 
+ 					} 
+
+ 					for ($i=0; $i < count($aAlumnos); $i++) { 
+ 						$contador ++;
+ 					}
 
 
- 					echo "Promedio general de notas: " . $contador  ?>
+ 					$aux = ($notaUno + $notaDos) /2;
+ 					$final = $aux/$contador; 
+
+ 					echo "Promedio general de notas: " . number_format($final , 2 , "," , ".");    ?>
 
  				</div> 
 
