@@ -1,0 +1,44 @@
+main{
+	display: flex
+}
+
+
+main div {
+	width: 50%;
+	padding: 1em,
+
+
+}	
+
+
+form{
+
+
+	display: flex;
+	flex-direction: column;
+	padding: 1.5em;
+	justify-content: space-around;
+
+
+
+}
+
+input{
+
+	margin-bottom: 1.5em;
+	 outline: none; 
+
+
+
+
+}
+
+.btn-primary {
+	width: 30% 
+
+}
+
+.btn-dark{
+	width: 15%;
+	font-size:.6em;
+}

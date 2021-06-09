@@ -13,7 +13,7 @@ $msg = "Hola, esto es un mensaje !!!";
 
 			for ($i=0; $i < count($variable); $i++) { 
 				
-			 	array_push($content, $variable[$i]) ;
+			 	array_push($content, $variable[$i . "\n"] ) ; 
 			}
 			 
 		   $str = json_encode($content);
@@ -30,6 +30,6 @@ $msg = "Hola, esto es un mensaje !!!";
 	} 
 
 
-  imprimir($aNotas); // function      
+  imprimir($msg); // function       
 
  ?> 
