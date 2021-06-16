@@ -1,9 +1,87 @@
 <?php 
 
-include_once("admclientes.php");
-	
+//include_once("admclientes.php");
+
+ini_set('display_errors','1');
+ini_set('display_startup_errors','1');
+ini_set('error_reporting', E_ALL); 
+
+
+	// Si "archivo.txt" existe -> 
+	// 1 - Leer y almacenar contenido(vendria ser un JSON) en un variable
+	// 2 - Decodificar esa variable JSON -> ARRAY 
+
+			
+			
+
+	      if (file_exists("archivo.txt")) {
+			//leer archivo
+			$clientesLectura = file_get_contents("archivo.txt") ;// variable que lee el contenido
+  
+			//converte el contenido de ese archivo: JSON OBJETO  ->  ARRAY
+			$aClientes = json_decode($clientesLectura ,true);//(usar TRUE, sino se queda como objeto) 
+			// IMPRIME ESTA VARIABLE			 	//true =  asociativo array
+
+ 			
+			
+		}	else $aClientes =  array();
+
 		
 
+			$id = isset($_REQUEST["id"]) && $_REQUEST["id"] >= 0? $_REQUEST["id"] : ""; 
+
+
+			if ($_POST) {
+
+					$dni = $_REQUEST["txtDni"];
+					$nombre= $_REQUEST["txtNombre"];
+					$telefono= $_REQUEST["txtTelefono"];
+					$correo = $_REQUEST["txtCorreo"];
+
+					//$archivo = $_FILES["file"];
+
+			
+
+					 $aClientes[] = array (
+
+					 	"dni" => $dni,
+					 	"nombre" => $nombre,
+					 	"telefono" => $telefono,
+					 	"correo" => $correo,
+					 	//"archivo" => $archivo  
+					 	
+
+					 ) ;
+
+					 // ARRAY -> JASON 
+
+					$aClientesJson =  json_encode($aClientes);
+
+ 
+
+
+					 // guardar JSON en "archivo.txt"
+
+					 file_put_contents("archivo.txt", $aClientesJson,); 
+
+
+
+
+					 /*if ($_FILES["archivo"]["error"] === UPLOAD_ERR_OK) {
+           			 $nombreAleatorio = date("Ymdhmsi") . rand(1000, 5000);
+           			 $archivo_tmp = $_FILES["archivo"]["tmp_name"];
+           			 $nombreArchivo = $_FILES["archivo"]["name"];
+           			 $extension = pathinfo($nombreArchivo, PATHINFO_EXTENSION);
+           			 $nuevoNombre = "$nombreAleatorio.$extension";
+           			 move_uploaded_file($archivo_tmp, "imagenes/$nuevoNombre");
+        	
+			}*/
+				
+
+			}// ends post
+
+
+			//print_r($aClientes);
  ?>
 
 <!DOCTYPE html>
@@ -35,39 +113,44 @@ include_once("admclientes.php");
 		<div>
 			
 			<form action=""  method="post" enctype="multipart/form-data" >
+
+
+				
 				
 				<label for="txtDni">DNI: *</label>
-				<input  class="form-control" type="text" name="txtDni">
+				<input  class="form-control" type="text" name="txtDni" required value=" <?php echo isset($aClientes[$id])? $aClientes[$id]["dni"] : ""  ?> ">
 
 				<label for="txtNombre">Nombre: *</label>
-				<input class="form-control" type="text" name="txtNombre">
+				<input class="form-control" type="text" name="txtNombre"  required value=" <?php echo isset($aClientes[$id])? $aClientes[$id]["nombre"] : ""  ?> ">
 
 				<label for="txtTelefono">Telefono: </label>
-				<input class="form-control" type="text" name="txtTelefono">
+				<input class="form-control" type="text" name="txtTelefono"  required value=" <?php echo isset($aClientes[$id])? $aClientes[$id]["telefono"] : ""  ?> ">
 
 				<label for="txtCorreo">Correo: *</label>
-				<input class="form-control" type="text" name="txtCorreo">
+				<input class="form-control" type="text" name="txtCorreo"  required value=" <?php echo isset($aClientes[$id])? $aClientes[$id]["correo"] : ""  ?> ">
 
 
+				<!-- SUBIR IMAGEN -->
+				<p>Adjuntar imagen <input type="file" name="file" accept=".jpg .jpeg, .png" > </p>
 
-				<p>Archivo adjunto <input type="file" name="archivo" accept=".jpg .jpeg, .png" multiple> <span>No se eligio archivo</span> </p>
+
 				<p>Archivos admitidos .jpg .jpeg .png</p>
-				<div   >
-				<button type="submit" name="btnSubmit" class="btn btn-primary"> Guardar</button>
+				
+				<div>
+					
+
+					<!-- FINAL -->
+					<button type="submit" name="btnSubmit" class="btn btn-primary"> Guardar</button>
+
 				</div>
 
-			</form>
+
+				</form>
 			
 
 		</div>
 
-			<?php 
-
-				$id = isset($_GET["id"]) && $_GET["id"] != "" ? $_GET["id"] : "";
-
-
-				
-			 ?>
+			
 
 		<div>	 
 			
@@ -84,20 +167,27 @@ include_once("admclientes.php");
 
 				</thead>
 
-				<tbody>
+				<tbody> 
 						
 					<?php foreach ($aClientes as $pos => $cliente): ?>
+
                         <tr>
-                            <td><?php  ?></td>
+                            <td><?php //echo $cliente["archivo"]; ?></td>
                             <td><?php echo $cliente["dni"]; ?></td>
                             <td><?php echo $cliente["nombre"]; ?></td>
                             <td><?php echo $cliente["correo"]; ?></td>
                             <td><?php echo $cliente["telefono"]; ?></td>
+                            <!--Accion-->
                             <td style="width: 110px;">
-                                <a href="index.php?id=<?php echo $pos; ?>"><i class="fas fa-edit"></i></a>
-                                <a href="index.php?id=<?php echo $pos; ?>&do=eliminar"><i class="fas fa-trash-alt"></i></a>
+
+
+                                <a href="index.php?id= <?php echo $pos; ?>"> <i class="fas fa-edit"></i>  </a>
+
+                                <a href="index.php?id= <?php echo $pos; ?>&do=eliminar"> <i class="fas fa-trash-alt"></i> </a>
+
                             </td>
                         </tr>
+
                     <?php endforeach;?>
 
 						

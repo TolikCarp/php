@@ -9,66 +9,7 @@
 	<title>Calcular Iva</title>
 
 
-<?php
- 
 
-			$iva=0; 
-			$resPrecioSinIva=0;
-			$resPrecioConIva=0;
-			$diferenciaIva = 0;	
-
-			
-			
-
-		if($_POST){
-			
-			$iva = $_REQUEST["txtIva"]; 
-			
-			$precioSinIva = $_REQUEST["txtPrecioSinIva"];
-			$precioConIva = $_REQUEST["txtPrecioConIva"];
-	 		
-			// PRECIO SIN IVA
-			if ($iva > 0 && $precioSinIva > 0 && $precioConIva == "") {
-				
-				
-				$resPrecioConIva = $precioSinIva + ($precioSinIva * $iva)/100;
-				$resPrecioSinIva = $precioSinIva;
-				$diferenciaIva = $resPrecioConIva - $resPrecioSinIva; 
-
-
-			}
-
-			// PRECIO CON IVA 
-
-				if ($iva > 0 &&  $precioConIva > 0 && $precioSinIva == "") {
-				
-				
-				$resPrecioSinIva = $precioConIva - ($precioConIva * $iva)/100;
-				$resPrecioConIva = $precioConIva;
-				$diferenciaIva = $resPrecioConIva - $resPrecioSinIva; 
-								
-
-			}
-
-
-		     
-
-				
- 		
-
-			
-
-
-
-			
-		
-	
-
-	
- }
-
-
-		 ?>
 	
 
 
@@ -87,7 +28,7 @@
 	<div style="display: flex; width:100%;justify-content: space-between; ">
 
 
-	
+	z
 
 
 	<div  style="width: 50% ;  display:flex; justify-content: center;  padding-top:10em; "> 
