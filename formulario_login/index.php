@@ -1,6 +1,15 @@
 
  		
- 	
+<?php 
+
+
+
+
+
+
+ ?> 	
+
+
 
 
 <!DOCTYPE html>
@@ -21,25 +30,29 @@
 	<div style="display: flex;  flex-direction:column; width: 40%;  padding: 1em; " > 
 		<h1>FORMULARIO</h1>
 
-			<?php 
+	<?php 
 
-	if($_POST){ /*si hay click*/
+		if($_POST) { /*si hay click*/
 
-		/*print_r($_REQUEST); /*para mi*/
+		$clave = $_REQUEST["txtClave"];
+		$usuario =$_REQUEST['txtUsuario']; 
 
-		$usuario = $_REQUEST["txtUsuario"]; /* variables */
+		$claveEncriptada = password_hash("12345", PASSWORD_DEFAULT);
 
- 
-		$clave = $_REQUEST["txtClave"]; /* variables */ 
 
-		if($usuario != null && $clave != null ){
+		if( password_verify( $clave, $claveEncriptada) && $usuario == "Admin"  ){
+
+
 			header ("Location: acceso-confirmado.php"); 
-		}
 
-		else echo "<p >Completar el  formulario </p> ";
+		}
+		
+		
+
+		else { echo "<p > Usuario o clave incorrecta </p> ";}
 
 		
-	} ; 
+	} 
 
 			
 
