@@ -1,13 +1,34 @@
 
- 		
 <?php 
+session_start();
 
 
 
+	if($_POST) { /*si hay click*/
+		//clave
+		$claveEncriptada = password_hash("12345", PASSWORD_DEFAULT);
+		//requests de inputs
+		$clave = $_REQUEST["txtClave"];
+		$usuario = $_REQUEST['txtUsuario']; 
+		
+		
 
+		if( password_verify( $clave, $claveEncriptada) && $usuario == "Admin" ){
 
+			$_SESSION["nombre"] = "Anatoliy Stryzhekozin";
+			
+			header ("Location: acceso-confirmado.php"); 
 
- ?> 	
+			//print_r( "Hola $usuario");	
+		}
+
+		else { echo "<p> Usuari@ o clave incorrect@ </p> ";}
+		
+	}
+
+		
+
+?> 	
 
 
 
@@ -30,33 +51,7 @@
 	<div style="display: flex;  flex-direction:column; width: 40%;  padding: 1em; " > 
 		<h1>FORMULARIO</h1>
 
-	<?php 
 
-		if($_POST) { /*si hay click*/
-
-		$clave = $_REQUEST["txtClave"];
-		$usuario =$_REQUEST['txtUsuario']; 
-
-		$claveEncriptada = password_hash("12345", PASSWORD_DEFAULT);
-
-
-		if( password_verify( $clave, $claveEncriptada) && $usuario == "Admin"  ){
-
-
-			header ("Location: acceso-confirmado.php"); 
-
-		}
-		
-		
-
-		else { echo "<p > Usuario o clave incorrecta </p> ";}
-
-		
-	} 
-
-			
-
-	 ?>
 
 
 

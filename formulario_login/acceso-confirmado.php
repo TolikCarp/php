@@ -1,5 +1,7 @@
 <?php 
+session_start();
 
+//inlude_once("index.php");
 
  ?>
 
@@ -17,13 +19,13 @@
  <body>
  	
  	<div style="padding: 1em">
- 	<h1>Bienvenid@s a Sistemas</h1>
+ 	<h1>Bienvenid@ <?php echo $_SESSION["nombre"]; ?> a Sistemas</h1>
 
  	<p  style="background:coral">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, porro, similique voluptatum illo praesentium ea quam in maiores pariatur officiis odio non iste perferendis voluptates, magnam minus, veniam quis harum?</p>
 
  	<div style="display: flex; width: 100%; justify-content: flex-end;">
 
- 	<button class="btn btn-primary "> <a style="color:white ; text-decoration: none; " href="index.php">Volver</a></button>
+ 	<button class="btn btn-primary "> <a style="color:white ; text-decoration: none; " href="index.php">Cerrar sesion</a></button>
 
  	</div>
 

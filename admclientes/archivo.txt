@@ -1,1 +1,1 @@
-[{"dni":" 96457895","nombre":"Juan Perez","telefono":"45466878","correo":"  JUAN@MAIL.COM"},{"dni":"11457896","nombre":"Sabrina Rojas","telefono":"788889977","correo":"mail@mail.com"}]
+[{"dni":"    22456789  ","nombre":"    Joe  ","telefono":"    1145665589  ","correo":" perdo@mail ","archivo":"20210620100608522436.png"},{"dni":"   22456788","nombre":"  Jack","telefono":"66554422","correo":"jack@gmail.com","archivo":null}]
